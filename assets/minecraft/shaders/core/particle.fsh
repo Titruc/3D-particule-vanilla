@@ -38,7 +38,7 @@ void main() {
     if (floor(uv) != uv && texSize.y / texSize.x != 4){
     color = vec4(-1);
     
-    #moj_import <titruc3dparticulecubemodelreader.glsl>
+    #moj_import <titruc3dparticulemain.glsl>
     }
     if(color == vec4(-1)){
         discard;
