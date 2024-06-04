@@ -12,7 +12,6 @@ uniform float FogEnd;
 uniform vec4 FogColor;
 uniform mat4 ProjMat;
 uniform mat4 ModelViewMat;
-uniform mat3 IViewRotMat;
 
 in float vertexDistance;
 in vec2 texCoord0;

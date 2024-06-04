@@ -30,7 +30,7 @@ void main() {
     glPos = Pos - vec4(inCoords * 1.6, 0, 0) * ModelViewMat;
     gl_Position = ProjMat * (ModelViewMat * Pos - vec4(inCoords, 0, 0)); 
 
-    vertexDistance = fog_distance(ModelViewMat, Position, FogShape);
+    vertexDistance = fog_distance(Position, FogShape);
     texCoord0 = UV0;
     vertexColor = Color * texelFetch(Sampler2, UV2 / 16, 0);
 }
