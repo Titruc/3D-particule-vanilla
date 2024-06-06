@@ -58,13 +58,30 @@ vec4 findNearestNonTransparentPixel(vec2 startPoint, vec2 subTextureTopLeft, vec
 }
 
 
-float findParticuleType(vec2 position, vec2 alphaTextureSize, vec2 textureSize, sampler2D Sampler0){ // find the id of the particle, basicly the alpha store in the pixel at 0, 0 coord ; vec2 position = textcoord0, vec2 alphaTextureSize = size of the alpha texture, vec2 textureSize = sub texture size, sampler2D Sampler0 = sampler0
+float findParticuleType(vec2 position, vec2 alphaTextureSize, vec2 textureSize, sampler2D Sampler0, bool isBreakingParticle){ // find the id of the particle, basicly the alpha store in the pixel at 0, 0 coord ; vec2 position = textcoord0, vec2 alphaTextureSize = size of the alpha texture, vec2 textureSize = sub texture size, sampler2D Sampler0 = sampler0, bool isBreakingParticle = this bool tell if the particle is a breaking one
+    //some variable for fun (just kiding it's for later calculation)
     vec4 idPixelPos = findTextureCoordinates(position, alphaTextureSize, textureSize);
     float idPixelColor = texture(Sampler0,vec2(idPixelPos.x,idPixelPos.y)).a;
-    if (idPixelColor != 0.0 && idPixelColor != 1.0) {
-        return idPixelColor * 255.0;
+    
+    //return the id of the particle :
+    //
+    //  breaking block/ item particle == -1.0
+    //  undeclared particle == 0.0
+    //  other == alpha of the texture in the up-left corner
+    //  
+
+    if(isBreakingParticle == false){
+        if (idPixelColor != 0.0 && idPixelColor != 1.0) 
+        {
+            return idPixelColor * 255.0;
+        }
+        else
+        {
+            return 0.0;
+        }
     }
-    else{
+    else
+    {
         return -1.0;
     }
 }
