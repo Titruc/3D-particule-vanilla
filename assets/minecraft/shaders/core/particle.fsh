@@ -24,6 +24,8 @@ in vec4 glPos;
 out vec4 fragColor;
 vec3 dir;
 
+in float isBreaking;
+
 void main() {
     //remove bad texture
     vec4 color = texture(Sampler0, texCoord0) * vertexColor * ColorModulator;
@@ -34,12 +36,16 @@ void main() {
     vec2 uv = (texCoord0 * texSize);
 
     //breaking block particule
-    if (floor(uv) != uv && texSize.y / texSize.x != 4){
-    color = vec4(-1);
-    
-    #moj_import <titruc3dparticulemain.glsl>
+    if (isBreaking == 1.0){
+        color = vec4(-1);
+        #moj_import <titruc3dparticulemain.glsl>
     }
-    if(color == vec4(-1)){
+    else
+    {
+        color = texture(Sampler0, texCoord0) * vertexColor * ColorModulator;
+    }
+    
+    if(color == vec4(-1) || color.a == 0){
         discard;
     }
     

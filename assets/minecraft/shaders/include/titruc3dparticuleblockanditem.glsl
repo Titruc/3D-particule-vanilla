@@ -28,11 +28,11 @@ for (int i = 0; i < 2; i++) {
             vec4 texColor = vec4(-1);
             if (isLittleParticle==false)
             {
-                texColor = texture(Sampler0,adjustUVForPixel(vec2(corner.x,corner.y), vec2(16.995,12), texCubeUV )); // apply texture
+                texColor = texture(Sampler0,adjustUVForPixel(vec2(corner.x,corner.y), vec2(17,12), texCubeUV)); // apply texture
             }
             else
             {
-                texColor = texture(Sampler0,adjustUVForPixel(vec2((corner.x * texSize.x + 5.0)/texSize.x,(corner.y* texSize.y + 5.0)/texSize.y), vec2(16.995,12), texCubeUV)); // apply texture
+                texColor = texture(Sampler0,adjustUVForPixel(vec2((corner.x * texSize.x + 0.0)/texSize.x,(corner.y* texSize.y + 0.0)/texSize.y), vec2(13.11,9.3), texCubeUV)); // apply texture
             }
             // Ajuster la couleur en fonction de la texture récupérée
             //if(texColor.a > 0.1)
@@ -55,7 +55,7 @@ for (int i = 0; i < 2; i++) {
             }
             //color = vec4(color.xyz,1.0);
             if(isLittleParticle==false){
-            color = color * vec4(vertexColor.xyz*1.6,1.0) * (ColorModulator) ;
+            color = color * vec4(vertexColor.xyz*1.3,1.0) * (ColorModulator) ;
             }else{
                 color = color * vec4(vertexColor.xyz,1.0) * (ColorModulator) ;
             }

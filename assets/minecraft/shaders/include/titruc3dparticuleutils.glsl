@@ -8,9 +8,9 @@ vec4 findTextureCoordinates(vec2 position, vec2 alphaTextureSize, vec2 textureSi
 }
 
 
-vec2 adjustUVForPixel(vec2 uv, vec2 textureSize, vec2 pixelCoord) { // ajuste l'uv a une surface, uv = coin haut gauche de la tyexture, textureSize = taille de la texture (11.33,8) pour une texture 16x16, pixelcoord = uv de la texture a appliquer
+vec2 adjustUVForPixel(vec2 uv, vec2 textureSize, vec2 pixelCoord) { // ajuste l'uv a une surface, uv = coin haut gauche de la tyexture, textureSize = taille de la texture (11.33,8) pour une texture 16x16, pixelcoord = uv de la texture a appliquer, offset = nbr de pixel a décaler
     vec2 pixelUV = fract(pixelCoord / textureSize); 
-    return uv + pixelUV / textureSize;
+    return uv + pixelUV / textureSize ;
 }
 
 vec2 normalizeTextureCoord(vec2 textureCoord, float subTextureSize) { // normalise des surface des cube, textureCoord = uv de la surface, subTextureSize = min de l'uv de la texture / 256.0
