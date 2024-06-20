@@ -20,22 +20,20 @@ in vec4 vertexColor;
 in vec4 Pos;
 in vec4 glPos;
 
-
 out vec4 fragColor;
 vec3 dir;
 
 in float isBreaking;
 
 void main() {
-    //remove bad texture
+    // remove bad texture
     vec4 color = texture(Sampler0, texCoord0) * vertexColor * ColorModulator;
     
-
-    //check texture
+    // check texture
     vec2 texSize = textureSize(Sampler0, 0);
     vec2 uv = (texCoord0 * texSize);
 
-    //breaking block particule
+    // breaking block particle
     if (isBreaking == 1.0){
         color = vec4(-1);
         #moj_import <titruc3dparticulemain.glsl>
@@ -49,7 +47,5 @@ void main() {
         discard;
     }
     
-    
     fragColor = linear_fog(color, vertexDistance, FogStart, FogEnd, FogColor);
-    
 }
