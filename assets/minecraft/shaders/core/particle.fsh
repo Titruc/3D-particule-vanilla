@@ -25,16 +25,19 @@ vec3 dir;
 
 in float isBreaking;
 
+
 void main() {
     // remove bad texture
     vec4 color = texture(Sampler0, texCoord0) * vertexColor * ColorModulator;
     
-    // check texture
+    // get texture size
     vec2 texSize = textureSize(Sampler0, 0);
-    vec2 uv = (texCoord0 * texSize);
+
+    //draw the right particule
+    float particleId = findParticuleType(texCoord0,textureSize(Sampler0, 0), vec2(8.0), Sampler0, bool(isBreaking)); //found the particule id (store in alpha of the first pixel)
 
     // breaking block particle
-    if (isBreaking == 1.0){
+    if (particleId != 0.0){
         color = vec4(-1);
         #moj_import <titruc3dparticulemain.glsl>
     }
@@ -46,6 +49,5 @@ void main() {
     if(color == vec4(-1) || color.a == 0){
         discard;
     }
-    
     fragColor = linear_fog(color, vertexDistance, FogStart, FogEnd, FogColor);
 }
