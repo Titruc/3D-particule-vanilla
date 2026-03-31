@@ -1,4 +1,4 @@
-vec4 sBox(vec3 ro, vec3 rd, vec3 size, out vec3 outNormal, float id) // razycast boite
+vec4 sBox(vec3 ro, vec3 rd, vec3 size, out vec3 outNormal, float id) // raycast box
 {
     vec3 m = 1.0 / rd;
     vec3 n = m * ro;
